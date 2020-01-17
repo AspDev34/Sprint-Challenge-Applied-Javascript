@@ -45,9 +45,10 @@ function Header(Date, Temp) {
 // selected class from html that i'm going to append the new component to
 const mainHTMLAppend = document.querySelector('.header-container');
 
+//map through static data and insert into component
 staticData.map((newComp) => {
     mainHTMLAppend.append(Header(newComp.Date, newComp.Temp));
 })
 
-//append to that class in the main HTML
+//append completed component to the .header-container class in the main HTML
 mainHTMLAppend.append(parentDiv);
