@@ -18,6 +18,16 @@
 //
 // Create a card for each of the articles and add the card to the DOM.
 
+axios.get("https://lambda-times-backend.herokuapp.com/articles")
+    .then(response => {Object.values(response.data.articles).forEach(data => {
+        data.forEach(data => {
+        const makeNewArticle = articleCards(data);
+        appendNewArticle.appendChild(makeNewArticle);
+    })})})
+    .catch(error => {
+        console.log("Try again, something went terribly wrong!", error);
+    })
+
 function articleCards (obj){
     // create elements
     const parentDiv = document.createElement('div');
@@ -50,29 +60,6 @@ function articleCards (obj){
 // selected class from html that i'm going to append the new article to
 const appendNewArticle = document.querySelector('.cards-container');
 
-// axios.get("https://lambda-times-backend.herokuapp.com/articles")
-//     .then(response => {
-//         console.log(response);
-//     })
-//     .catch(error => {
-//         console.log("Try again, something went terribly wrong!", error);
-//     })
 
-axios.get("https://lambda-times-backend.herokuapp.com/articles")
-    .then(response => {
-        const makeNewArticle = articleCards(response.data);
-        appendNewArticle.appendChild(makeNewArticle);
-    })
-    .catch(error => {
-        console.log("Try again, something went terribly wrong!", error);
-    })
 
-// this forEach now grabs the data from users in the array 
-data.forEach(event => {
-    axios.get(`https://lambda-times-backend.herokuapp.com/${event}`)
-      .then(response => {
-        const articleRes = articleCards(response.data);
-        appendNewArticle.appendChild(articleRes);
-      })
-  })     
-  
+
