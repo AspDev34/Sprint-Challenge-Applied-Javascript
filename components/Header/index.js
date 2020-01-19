@@ -51,4 +51,4 @@ staticData.map((newComp) => {
 })
 
 //append completed component to the .header-container class in the main HTML
-mainHTMLAppend.append(parentDiv);
+// mainHTMLAppend.append(parentDiv);
