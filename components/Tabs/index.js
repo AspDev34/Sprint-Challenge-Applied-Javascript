@@ -7,3 +7,46 @@
 //
 //  The tab component should look like this:
 //    <div class="tab">topic here</div>
+
+
+function tabComponent (obj){
+    // create tab component
+    const tabDiv = document.createElement('div');
+
+    //add class of tab
+    tabDiv.classList.add('tab');
+
+    //pass obj data to tab
+    tabDiv.textContent = obj;
+
+    return tabDiv;
+
+}
+
+// selected class from html that i'm going to append the new component to
+const appendNewTab = document.querySelector('.topics');
+
+// axios.get("https://lambda-times-backend.herokuapp.com/topics")
+//     .then(response => {
+//      const makeNewTab = tabComponent(response.data);
+//         appendNewTab.appendChild(makeNewTab);
+
+    // })
+    // .catch(error => {
+    //     console.log("An error has occurred", error);
+    //   })
+
+// this forEach now grabs the data from the API via the Axios call and appends to the main HTML
+
+    axios.get(`https://lambda-times-backend.herokuapp.com/topics`)
+      .then(response => {
+        response.data.topics.forEach(data => {
+        const tabData = tabComponent(data);
+        appendNewTab.appendChild(tabData);
+      })})
+      .catch (error => {
+          console.log("An error has occurred", error);
+      })
+     
+//   axios.get(`https://lambda-times-backend.herokuapp.com/topics`)
+//       .then(response => console.log(response))
